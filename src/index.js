@@ -8,4 +8,6 @@ app.get('/projects', (request, response) => {
 });
 
 // expondo a porta que a aplicação vai rodar
-app.listen(3333);
+app.listen(3333, () => {
+  console.log('Back-end started!')
+});
