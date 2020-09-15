@@ -3,8 +3,8 @@ const express = require('express');
 const app = express();
 
 
-app.get('/projects', (req, res) => {
-  return res.send('Hello world');
+app.get('/projects', (request, response) => {
+  return response.json({ message: 'Hello world' });
 });
 
 // expondo a porta que a aplicação vai rodar
