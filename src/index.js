@@ -4,7 +4,7 @@ const app = express();
 
 
 app.get('/projects', (request, response) => {
-  return response.json({ message: 'Hello world' });
+  return response.json({ message: 'Hello Rodrigo' });
 });
 
 // expondo a porta que a aplicação vai rodar
