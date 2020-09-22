@@ -13,10 +13,13 @@ app.get("/projects", (request, response) => {
   //pegando os query params
   const { title, owner } = request.query;
 
-  // console.log(title);
-  // console.log(owner);
+  //Adicionando filtro de busca pelo título
+  const results = title 
+  ? projects.filter(project => project.title.includes(title)) 
+  : projects;
 
-  return response.json(projects);
+
+  return response.json(results);
 });
 
 app.put("/projects/:id", (request, response) => {
