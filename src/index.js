@@ -9,15 +9,23 @@ app.use(express.json());
 //vai servir como o nosso banco de dados em memória
 const projects = [];
 
+function logRequests(request, response, next) {
+  const { method, url } = request;
+  const logLabel = `[${method.toUpperCase()}] ${url}`;
+  console.log(logLabel);
+  return next();
+}
+
+app.use(logRequests);
+
 app.get("/projects", (request, response) => {
   //pegando os query params
   const { title, owner } = request.query;
 
   //Adicionando filtro de busca pelo título
-  const results = title 
-  ? projects.filter(project => project.title.includes(title)) 
-  : projects;
-
+  const results = title
+    ? projects.filter((project) => project.title.includes(title))
+    : projects;
 
   return response.json(results);
 });
@@ -58,14 +66,14 @@ app.post("/projects", (request, response) => {
   return response.json(project);
 });
 
-app.delete('/projects/:id', (request, response) => {
+app.delete("/projects/:id", (request, response) => {
   const { id } = request.params;
 
   //buscando a posição do projeto no array de projetos
   const projectIndex = projects.findIndex((project) => project.id === id);
 
   if (projectIndex < 0) {
-    return response.status(404).json({ error: 'Project not found.' });
+    return response.status(404).json({ error: "Project not found." });
   }
 
   //removendo o projeto
