@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const { uuid, isUuid } = require("uuidv4");
 
@@ -34,7 +33,7 @@ app.use('/projects/:id', validateProjectId);
 
 app.get("/projects", (request, response) => {
   //pegando os query params
-  const { title, owner } = request.query;
+  const { title } = request.query;
 
   //Adicionando filtro de busca pelo título
   const results = title
